@@ -81,7 +81,7 @@ print("Mean pumpkin weight (kg) by country:", mean_by_country)
 highest_mean = mean_by_country.idxmax()
 print("Country with the highest mean weight (kg):", highest_mean)
 
-# Calculating the average pumpkin weight for each combo of pumpkin and variety mean_by_country_variety = df_filtered.groupby(["country", "variety"])["weight_kg"].mean() 
+# Calculating the average pumpkin weight for each combo of pumpkin and variety
 # groupby is used to group the rows by both country and variety
 mean_country_variety = df_filtered.groupby(["country", "variety"])["weight_kg"].mean()
 
