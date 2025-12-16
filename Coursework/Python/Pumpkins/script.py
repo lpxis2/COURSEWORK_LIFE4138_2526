@@ -81,14 +81,15 @@ print("Mean pumpkin weight (kg) by country:", mean_by_country)
 highest_mean = mean_by_country.idxmax()
 print("Country with the highest mean weight (kg):", highest_mean)
 
-# Calculating the average pumpkin weight for each combo of pumpkin and variety
-mean_by_country_variety = df_filtered.groupby(["country", "variety"])["weight_kg"].mean() #groupby is used to group the rows by both country and variety
+# Calculating the average pumpkin weight for each combo of pumpkin and variety mean_by_country_variety = df_filtered.groupby(["country", "variety"])["weight_kg"].mean() 
+# groupby is used to group the rows by both country and variety
+mean_country_variety = df_filtered.groupby(["country", "variety"])["weight_kg"].mean()
 
 # idxmin here returns the country/variety pair with the lowest mean value
-lowest_country_variety = mean_by_country_variety.idxmin()
+lowest_country_variety = mean_country_variety.idxmin()
 
 # printing results 
-print("Mean pumpkin weight (kg) by country and variety:", mean_by_country_variety)
+print("Mean pumpkin weight (kg) by country and variety:", mean_country_variety)
 print("Lowest mean weight (kg) by country and variety:", lowest_country_variety)
 
 # Q8. creating a boxplot to compare the pumpkin weight distirbution (kg) across the three countries
@@ -107,9 +108,10 @@ facet_plot = sns.catplot(
     y="weight_kg",
     col="variety",
     kind="box",
-    col_wrap=4, # helps figure be less tall
+    col_wrap=3, # shows 3 plots per row
     hue="country"
 )
+
 # Setting x and y axis labels, I don't use plt.xlabel/plt.ylabel here so it is easier to set it for all figures
 facet_plot.set_axis_labels("Country", "Pumpkin weight (kg)")
 
