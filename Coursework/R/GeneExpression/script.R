@@ -6,21 +6,14 @@ library(dplyr)
 library(ggplot2)
 library(readr)
 
-# wanted the script work in both places where i run it
 #  in the terminal i cant use file.choose so i pass the file paths in as arguments
 # arg [1] refers to the first file path and [2] refers to second
-
 args <- commandArgs(trailingOnly = TRUE)
 
-if (length(args) == 2) {
-  # terminal run = get the two file paths from args
-  G_vs_D_filepath <- args[1]  # first file path I passed in
-  I_vs_E_filepath <- args[2]  # second file path I passed in
-} else {
-  # RStudio run = pick the files manually using a file picker window
-  G_vs_D_filepath <- file.choose()
-  I_vs_E_filepath <- file.choose()
-}
+# if files paths are passed in itll use those
+# if not itll use my local files in the repo
+G_vs_D_filepath <- if (length(args) >= 1) args[1] else "Datasets/G_vs_D.deseq2.results.tsv"
+I_vs_E_filepath <- if (length(args) >= 2) args[2] else "Datasets/I_vs_E.deseq2.results.tsv"
 
 #  checking the input files actually exist otherwise readtsv will fail
 stopifnot(file.exists(G_vs_D_filepath))
